@@ -1,21 +1,23 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuizRunner {
     public static void main(String[] args) {
+        List<String> answerChoices = new ArrayList<>();
+        answerChoices.add("Baseball");
+        answerChoices.add("Basketball");
+        answerChoices.add("Volleyball");
+        answerChoices.add("Football");
+        MultipleChoice question1 = new MultipleChoice("What sport did I play in college?", "Basketball", answerChoices);
 
-        ArrayList<String> listOfChoices = new ArrayList<>();
-        listOfChoices.add("Basketball");
-        listOfChoices.add("Baseball");
-        listOfChoices.add("Volleyball");
-        listOfChoices.add("Football");
-        MultipleChoice question1 = new MultipleChoice("What sport did I play in college?","Basketball", listOfChoices);
-        System.out.println(question1.getAnswer());
-        System.out.println(question1.answerChoices);
-        System.out.println(question1.displayAnswerChoicesArrayList());
+        TrueFalse question2 = new TrueFalse("I played college basketball.", true);
 
-        Question question2 = new Question("What sport did I play?", "Basketball");
-        System.out.println(question2.getQuestion());
+        Quiz quiz = new Quiz();
+        quiz.addQuestion(question1);
+        quiz.addQuestion(question2);
+        System.out.println(quiz.displayQuestions());
+
     }
 }

@@ -2,29 +2,22 @@ package main;
 
 import java.util.ArrayList;
 
-public class Question {
+public  abstract class Question {
     private String question;
-    private String answer;
+    public abstract String displayAnswerChoicesList();
+    public abstract Boolean checkForCorrectAnswer(String input);
 
 
-    public Question (String question, String answer){
+
+    //constructor
+    public Question (String question){
         this.question = question;
-        this.answer = answer;
     }
-
-
-
-
 
     //getters
     public String getQuestion() {
         return question;
     }
-
-    public String getAnswer() {
-        return answer;
-    }
-
 
 
     //setters
@@ -32,9 +25,8 @@ public class Question {
         this.question = question;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 
+
+    //methods
 
 }
