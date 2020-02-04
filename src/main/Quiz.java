@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,6 +41,7 @@ public class Quiz {
         return questionsDisplayedOnScreen;
     }
     public String startQuiz() {
+        Collections.shuffle(questions);
         Scanner input =new Scanner(System.in);
         Double correctAnswers = 0.0;
         for(Question question: questions) {

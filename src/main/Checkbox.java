@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Checkbox extends Question {
@@ -13,6 +14,7 @@ public class Checkbox extends Question {
         this.correctAnswers = correctAnswers;
         this.answerChoices = answerChoices;
         answerChoices.addAll(correctAnswers);
+        Collections.shuffle(answerChoices);
     }
 
     //getters

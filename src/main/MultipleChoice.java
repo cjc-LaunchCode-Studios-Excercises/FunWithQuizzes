@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MultipleChoice extends Question {
@@ -13,6 +14,7 @@ public class MultipleChoice extends Question {
         this.correctAnswer = correctAnswer;
         this.answerChoices = answerChoices;
         answerChoices.add(correctAnswer);
+        Collections.shuffle(answerChoices);
     }
 
     //setter
