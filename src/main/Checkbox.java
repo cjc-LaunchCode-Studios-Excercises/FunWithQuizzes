@@ -8,11 +8,11 @@ public class Checkbox extends Question {
     private List<String> correctAnswers;
     private List<String> answerChoices;
 
-
     public Checkbox (String question, List<String> correctAnswers, List<String> answerChoices) {
         super(question);
         this.correctAnswers = correctAnswers;
         this.answerChoices = answerChoices;
+        answerChoices.addAll(correctAnswers);
     }
 
     //getters
@@ -37,27 +37,32 @@ public class Checkbox extends Question {
     public String displayAnswerChoicesList(){
         String choices = "";
         for(int i = 0; i<answerChoices.size(); i++){
-            choices += "\n" + (i+1) + ". " + answerChoices.get(i);
+            choices += (i+1) + ". " + answerChoices.get(i) + "\n";
         }
-
+        choices += "Please enter value of selections using commas without spaces, such as 3,5,7,8";
         return choices;
     }
-//need to change input from string to Array list to integers within Array List
+
     public Boolean checkForCorrectAnswer(String input){
-        List<String> inputList = new ArrayList<>();
-        inputList.addAll(Arrays.asList(input.split(",")));
+        List<String> inputList = new ArrayList<>(Arrays.asList(input.split(",")));
         Integer inputListSize = inputList.size();
         Integer inputListCorrect = 0;
-        for(String list : inputList){
-            if(this.correctAnswers.contains(list)){
-                inputListCorrect++;
-            } else {
-                break;
+        if(inputListSize == correctAnswers.size()){
+            for(String list : inputList){
+                if(this.correctAnswers.contains(list)){
+                    inputListCorrect++;
+                } else if(isInteger(list)){
+                    for(String answer : correctAnswers) {
+                        if (answerChoices.get(Integer.parseInt(list) - 1).equals(answer)) {
+                            inputListCorrect++;
+                        }
+                    }
+                } else {
+                    break;
+                }
             }
         }
 
         return inputListCorrect == correctAnswers.size();
     }
-
-
 }

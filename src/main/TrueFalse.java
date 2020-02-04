@@ -23,9 +23,23 @@ public class TrueFalse extends Question {
 
     //methods
     public String displayAnswerChoicesList(){
-        return "True\nFalse";
+        return "Type True or False";
     }
+
+    public Boolean isBoolean(String input) {
+        try{
+            Boolean.parseBoolean(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public Boolean checkForCorrectAnswer(String input){
-        return Boolean.parseBoolean(input) == this.correctAnswer;
+        if(isBoolean(input)){
+            return Boolean.parseBoolean(input) == this.correctAnswer;
+        } else {
+            return false;
+        }
     }
 }

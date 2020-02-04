@@ -12,6 +12,7 @@ public class MultipleChoice extends Question {
         super(question);
         this.correctAnswer = correctAnswer;
         this.answerChoices = answerChoices;
+        answerChoices.add(correctAnswer);
     }
 
     //setter
@@ -38,17 +39,21 @@ public class MultipleChoice extends Question {
         for(int i = 0; i<answerChoices.size(); i++){
             choices += (i+1) + ". " + answerChoices.get(i) + "\n" ;
         }
+        choices += "Please enter number of choice:";
         return choices;
     }
 
     public Boolean checkForCorrectAnswer (String input) {
-        if((answerChoices.contains(input) && this.getCorrectAnswer() == input)){
-            return true;
-        } else if(answerChoices.get(Integer.parseInt(input)) == this.correctAnswer){
-            return true;
-        } else {
-            return false;
+        Boolean correct = false;
+        if(correctAnswer.toLowerCase().equals(input.toLowerCase())){
+            correct = true;
+        } else if (isInteger(input)) {
+            if(answerChoices.get(Integer.parseInt(input)-1) == this.correctAnswer){
+                correct = true;
+            }
+            
         }
+        return correct;
     }
 
 }

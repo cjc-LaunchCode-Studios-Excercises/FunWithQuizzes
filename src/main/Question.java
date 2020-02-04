@@ -6,8 +6,14 @@ public  abstract class Question {
     private String question;
     public abstract String displayAnswerChoicesList();
     public abstract Boolean checkForCorrectAnswer(String input);
-
-
+    public static Boolean isInteger(String input){
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     //constructor
     public Question (String question){
@@ -19,14 +25,15 @@ public  abstract class Question {
         return question;
     }
 
-
     //setters
     public void setQuestion(String question) {
         this.question = question;
     }
 
 
-
     //methods
+    public void displayQuestion() {
+        System.out.println(question);
+    }
 
 }
